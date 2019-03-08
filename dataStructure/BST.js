@@ -25,8 +25,8 @@ function BST() {
 // insert() 用来向树中插入新节点
 function insert(data) {
   // 将左右子节点的引用初始化为空，可能是叶子节点
-  var n = new Node(data, null, null);
-  if (this.root = null) {
+  var n = new Node(data,null,null);
+  if (this.root == null) {
     this.root = n;
   }
   else {
@@ -40,12 +40,11 @@ function insert(data) {
           parent.left = n;
           break;
         }
-      }
-      else {
+      }else {
         current = current.right;
         if (current == null) {
           parent.right = n;
-          break;
+          break
         }
       }
     }
@@ -54,8 +53,8 @@ function insert(data) {
 
 // 遍历二叉树 先序 中序 后序
 
-// 中序
-function inOrder (node) {
+// 中序遍历
+function inOrder(node) {
   if (!(node == null)) {
     inOrder(node.left);
     console.log(node.show() + '')
@@ -63,13 +62,28 @@ function inOrder (node) {
   }
 }
 
-// 测试中序遍历
-var nums = new BST();
-nums.insert(23);
-nums.insert(45);
-nums.insert(16);
-nums.insert(37);
-nums.insert(3);
-nums.insert(99);
-nums.insert(22);
-// inOrder(nums.root)
+// 先序遍历
+function preOrder(node) {
+  if (!(node == null)) {
+    console.log(node.show() + '')
+    inOrder(node.left);
+    inOrder(node.right);
+  }
+}
+
+// 后序遍历
+function postOrder(node) {
+  if (!(node == null)) {
+    inOrder(node.left);
+    inOrder(node.right);
+    console.log(node.show)
+  }
+}
+
+// 测试先序遍历
+var bst = new BST();
+var nums = [10, 3, 18, 2, 4, 13, 21, 9, 8, 9];
+for(var i = 0; i < nums.length; i++) {
+  bst.insert(nums[i]);
+}
+bst.inOrder(bst.root);
