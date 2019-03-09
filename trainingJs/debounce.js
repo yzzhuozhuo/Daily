@@ -6,6 +6,13 @@
 这样就能保证输入字符后的 interval 间隔内如果还有字符输入的话，就不会执行 fn 函数了。
 */
   
+/**
+ *
+ *
+ * @param {*} fn
+ * @param {*} delay
+ * @returns
+ */
 function deBounce (fn,delay) {
   let timeout = null;
   return () => {
