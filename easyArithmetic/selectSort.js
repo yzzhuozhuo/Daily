@@ -26,5 +26,5 @@ function selectSort(arr) {
   }
   return arr
 }
-var arr = [1,4,5,7,2,3]
+var arr = [1, 4, 5, 7, 2, 3]
 console.log(selectSort(arr))
