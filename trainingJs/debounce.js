@@ -5,7 +5,7 @@
 每当用户输入的时候把前一个 setTimeout clear 掉，然后又创建一个新的 setTimeout，
 这样就能保证输入字符后的 interval 间隔内如果还有字符输入的话，就不会执行 fn 函数了。
 */
-  
+
 /**
  *
  *
@@ -13,12 +13,12 @@
  * @param {*} delay
  * @returns
  */
-function deBounce (fn,delay) {
+function deBounce(fn, delay) {
   let timeout = null;
   return () => {
     clearTimeout(timeout);
     timeout = setTimeout(() => {
-      fn.apply(this,arguments)
-    },delay)
+      fn.apply(this, arguments)
+    }, delay)
   }
 }  

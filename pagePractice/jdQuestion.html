@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 得到，属于buyerId=‘zhangsan’ 且 goodsNum > 3 且 购买了goodsId = 'phoneX' 的订单列表。
+        let order = [{ orderId: '1', goodsIds: [{ goodsId: '001' }], buyerId: '0201', goodsNum: '4' },
+        { orderId: '2', goodsIds: [{ goodsId: 'phoneX' }], buyerId: '0202', goodsNum: '5' },
+        { orderId: '3', goodsIds: [{ goodsId: '003' }], buyerId: '0203', goodsNum: '4' },
+        { orderId: '4', goodsIds: [{ goodsId: '004' }], buyerId: '0204', goodsNum: '3' },
+        { orderId: '5', goodsIds: [{ goodsId: 'phoneX' }], buyerId: '0205', goodsNum: '2' },
+        { orderId: '6', goodsIds: [{ goodsId: 'phoneX' }], buyerId: 'zhangsan', goodsNum: '5' },
+        { orderId: '7', goodsIds: [{ goodsId: '007' }], buyerId: '0207', goodsNum: '4' },
+        { orderId: '8', goodsIds: [{ goodsId: '008' }], buyerId: '0208', goodsNum: '1' }
+        ];
+        // 最终得到的结果是order[5]
+        // 方法一 *
+        for (let i = 0; i < order.length; i++) {
+            if (order[i].buyerId == 'zhangsan' && order[i].goodsNum > 3 && order[i].goodsIds[0].goodsId == 'phoneX') {
+                console.log(order[i]);
+            }
+        }
+        // 方法二 **
+        let res = order.filter(item => item.buyerId == 'zhangsan' && item.goodsNum > 3 && item.goodsIds[0].goodsId == 'phoneX')
+        console.log(...res);
+
+        // 方法三***
+        order.forEach(item => {
+            let res1 = (item.buyerId == 'zhangsan' && item.goodsNum > 3 && item.goodsIds[0].goodsId == 'phoneX') ? item : '不存在此订单!';
+            if (res1 == item) {
+                console.log(res1);
+            }
+        });
+
+        // ES6方法 filter条件过滤
+        // var order = [{ orderId: '', goodsIds: [{ goodsId: '' }], buyerId: '', goodsNum: '' }]
+        let res1 = order.filter((val) =>
+            val.buyerId === 'zhangsan' && val.goodsNum > 3 && val.goodsIds && val.goodsIds.some(subVal =>
+                subVal.goodsId === 'phoneX'))
+        console.log(res1)
+        
+        // 通过for循环 把满足条件的push进去
+        var res2 = []
+        for (let i = 0; i < order.length; i++) {
+            if (order[i].buyerId === 'zhangsan' && order[i].goodsNum > 3 && order[i].goodsIds.some(subVal => subVal.goodsId === 'phoneX')) res2.push(order[i])
+        }
+        console.log(res2)
+    </script>
+</body>
+
+</html>
