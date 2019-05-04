@@ -59,4 +59,4 @@ function isValid(s) {
 };
 var str = '(]'
 var res = isValid(str);
-console.log(res)
+console.log(res);
