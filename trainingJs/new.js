@@ -13,15 +13,15 @@ new 操作符做了这几件事
 function New(func) {
   var res = {};
   if (func.prototype !== null) {
-      res.__proto__ = func.prototype;
+    res.__proto__ = func.prototype;
   }
   var ret = func.apply(res, Array.prototype.slice.call(arguments, 1));
   if ((typeof ret === "object" || typeof ret === "function") && ret !== null) {
-      return ret;
+    return ret;
   }
   return res;
 }
-function A(a,b) {
+function A(a, b) {
   this.a = a;
   this.b = b;
 }
@@ -29,3 +29,12 @@ var obj = New(A, 1, 2);
 // equals to
 // var obj = new A(1, 2);
 console.log(obj)
+
+// JavaScript深入系列中new的实现
+function objectFactory() {
+  var obj = new Object();
+  Constructor = [].shift.call(arguments);
+  obj.__proto__ = Constructor.prototype;
+  var ret = Constructor.apply(obj, arguments);
+  return typeof ret === 'Object' ? ret : obj;
+}
